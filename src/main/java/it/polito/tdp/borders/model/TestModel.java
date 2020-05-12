@@ -1,5 +1,11 @@
 package it.polito.tdp.borders.model;
 
+import java.util.List;
+import java.util.Set;
+
+import org.jgrapht.graph.DefaultEdge;
+import org.jgrapht.graph.SimpleGraph;
+
 public class TestModel {
 
 	public static void main(String[] args) {
@@ -20,6 +26,19 @@ public class TestModel {
 //		for (Country country : stats.keySet())
 //			System.out.format("%s %d\n", country, stats.get(country));		
 		
+		
+		model.creaGrafo(1920);
+		Set<DefaultEdge> listaEdge = model.grafo.edgeSet();
+		
+		/*for (DefaultEdge e : listaEdge) {
+			System.out.println("Country c1 "+ model.grafo.getEdgeSource(e).getName()+", Country c2: "+model.grafo.getEdgeTarget(e).getName());
+		}*/
+		
+		for (Country c : model.grafo.vertexSet()) {
+			if(model.grafo.degreeOf(c)>0)
+				System.out.println(c.getName()+": "+model.grafo.degreeOf(c)+" paesi adiacenti via terra");
+		}
+		
 	}
-
+	
 }
